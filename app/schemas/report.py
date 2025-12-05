@@ -41,12 +41,9 @@ class ReportBase(BaseModel):
 # Schema for CREATING a report (Input)
 class ReportCreate(ReportBase):
     location: str = Field(..., description="Physical address, landmark, or Google Maps link")
-    
     transcribedVoiceText: Optional[str] = None
-    
     isAnonymous: bool = Field(False, description="True if user wants to remain anonymous")
     hashedDeviceId: Optional[str] = Field(None, description="Required if isAnonymous=True for tracking")
-    
     # Nested Attachments: Client sends list of file metadata with the report
     attachments: List[AttachmentCreate] = []
 
