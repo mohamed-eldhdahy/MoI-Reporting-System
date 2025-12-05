@@ -1,6 +1,6 @@
 import asyncio
 from sqlalchemy import text
-from app.core.database import engine
+from app.core.database import engine_ops
 
 async def test_connection():
     try:
