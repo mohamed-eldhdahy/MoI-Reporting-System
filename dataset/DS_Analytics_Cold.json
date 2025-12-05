@@ -2,7 +2,7 @@
 	"name": "DS_Analytics_Cold",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Moi_Analytics",
+			"referenceName": "moi_analytics",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -62,5 +62,6 @@
 			"schema": "cold",
 			"table": "Fact_Reports"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

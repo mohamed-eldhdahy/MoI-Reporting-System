@@ -2,7 +2,7 @@
 	"name": "DS_Watermark",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "moi_operations",
+			"referenceName": "moi_operation",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -27,5 +27,6 @@
 			"schema": "dbo",
 			"table": "ETL_Watermark"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
