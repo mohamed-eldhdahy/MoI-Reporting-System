@@ -198,16 +198,16 @@
 				"typeProperties": {
 					"storedProcedureName": "[dbo].[sp_UpdateWatermark]",
 					"storedProcedureParameters": {
-						"LastExtractedValue": {
+						"TableName": {
+							"value": "\"Report\"",
+							"type": "String"
+						},
+						"NewWatermarkValue": {
 							"value": {
-								"value": "@{if(empty(activity('Lookup_New_Watermark').output.firstRow), '1900-01-01', activity('Lookup_New_Watermark').output.firstRow.LastExtractedValue)}",
+								"value": "@{activity('Lookup_New_Watermark').output.firstRow.NewWatermark}",
 								"type": "Expression"
 							},
 							"type": "Datetime"
-						},
-						"@TableName": {
-							"value": "\"Report\"",
-							"type": "String"
 						}
 					}
 				},
@@ -218,7 +218,7 @@
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2025-12-05T19:09:29Z"
+		"lastPublishTime": "2025-12-05T19:38:51Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
