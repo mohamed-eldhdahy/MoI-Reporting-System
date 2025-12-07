@@ -9,7 +9,7 @@ from app.schemas.attachment import AttachmentResponse, AttachmentCreate , FileTy
 class ReportStatus(str, Enum):
     SUBMITTED = "Submitted"
     ASSIGNED = "Assigned"
-    IN_PROGRESS = "Inprogress"
+    IN_PROGRESS = "InProgress"
     RESOLVED = "Resolved"
     REJECTED = "Rejected"
 
