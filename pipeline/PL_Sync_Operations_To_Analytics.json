@@ -196,27 +196,29 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[usp_UpdateWatermark]",
+					"storedProcedureName": "[dbo].[sp_UpdateWatermark]",
 					"storedProcedureParameters": {
-						"LastExtractedValue": {
+						"TableName": {
+							"value": "\"Report\"",
+							"type": "String"
+						},
+						"NewWatermarkValue": {
 							"value": {
 								"value": "@{activity('Lookup_New_Watermark').output.firstRow.NewWatermark}",
 								"type": "Expression"
 							},
 							"type": "Datetime"
-						},
-						"TableName": {
-							"value": "\"Report\"",
-							"type": "String"
 						}
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "moi_operations",
+					"referenceName": "moi_operation",
 					"type": "LinkedServiceReference"
 				}
 			}
 		],
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2025-12-05T19:38:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

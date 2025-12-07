@@ -49,7 +49,11 @@ class Settings(BaseSettings):
     BLOB_CONTAINER_NAME: str = "report-attachments"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+<<<<<<< HEAD
     ALLOWED_ORIGINS: list = ["http://localhost:3000", "http://localhost:8080", "http://localhost:56336","https://depi-moi-project.netlify.app/", "capacitor://localhost"]
+=======
+    ALLOWED_ORIGINS: list = ["http://localhost:3000", "http://localhost:8080", "http://localhost:56336", "capacitor://localhost","https://depi-moi-project.netlify.app"]
+>>>>>>> 8a5a49886c5280ac7e049c8b2c1449fbe3210090
     RATE_LIMIT_PER_MINUTE: int = 60
 
     class Config:
