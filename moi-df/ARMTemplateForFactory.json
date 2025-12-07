@@ -268,16 +268,16 @@
 						"typeProperties": {
 							"storedProcedureName": "[[dbo].[sp_UpdateWatermark]",
 							"storedProcedureParameters": {
-								"LastExtractedValue": {
+								"TableName": {
+									"value": "\"Report\"",
+									"type": "String"
+								},
+								"NewWatermarkValue": {
 									"value": {
-										"value": "@{if(empty(activity('Lookup_New_Watermark').output.firstRow), '1900-01-01', activity('Lookup_New_Watermark').output.firstRow.LastExtractedValue)}",
+										"value": "@{activity('Lookup_New_Watermark').output.firstRow.NewWatermark}",
 										"type": "Expression"
 									},
 									"type": "Datetime"
-								},
-								"@TableName": {
-									"value": "\"Report\"",
-									"type": "String"
 								}
 							}
 						},
@@ -291,7 +291,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"annotations": [],
-				"lastPublishTime": "2025-12-05T19:09:29Z"
+				"lastPublishTime": "2025-12-05T19:38:51Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_Watermark')]",
@@ -299,6 +299,43 @@
 				"[concat(variables('factoryId'), '/datasets/DS_Analytics_Hot')]",
 				"[concat(variables('factoryId'), '/datasets/DS_Analytics_Cold')]",
 				"[concat(variables('factoryId'), '/linkedServices/moi_operation')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/P_Data_Archival_90Day')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Exec_Archive_Purge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_ArchiveAndPurge90DayData]"
+						},
+						"linkedServiceName": {
+							"referenceName": "moi_analytics",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-12-05T19:46:02Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/moi_analytics')]"
 			]
 		},
 		{
@@ -747,8 +784,8 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 15,
+						"frequency": "Hour",
+						"interval": 12,
 						"startTime": "2025-12-05T17:47:00",
 						"timeZone": "Egypt Standard Time"
 					}
@@ -764,7 +801,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -786,6 +823,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/PL_Sync_Operations_To_Analytics')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Triger for purge and archive')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "P_Data_Archival_90Day",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 24,
+						"startTime": "2025-12-05T19:44:00",
+						"timeZone": "Egypt Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/P_Data_Archival_90Day')]"
 			]
 		}
 	]
