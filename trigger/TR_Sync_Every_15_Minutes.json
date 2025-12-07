@@ -2,7 +2,7 @@
 	"name": "TR_Sync_Every_15_Minutes",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
