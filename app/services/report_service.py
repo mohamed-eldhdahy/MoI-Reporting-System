@@ -269,7 +269,7 @@ class ReportService:
         total = query.count()
         
         # Apply pagination and ordering
-        reports = query.order_by(Report.createdAt.desc()).offset(skip).limit(limit).all()
+        reports = query.order_by(Report.createdAt.desc()).all()
         
         # Generate download URLs for all attachments
         blob_service = BlobStorageService()
