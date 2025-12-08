@@ -18,7 +18,7 @@ class AnalyticsService:
         'public_nuisance', 'environmental', 'other'
     ]
     TARGET_STATUSES = [
-        'Submitted', 'Assigned', 'Inprogress', 'Resolved', 'Rejected'
+        'Submitted', 'Assigned', 'InProgress', 'Resolved', 'Rejected'
     ]
 
     # ==========================================
