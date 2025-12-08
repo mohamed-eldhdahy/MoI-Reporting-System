@@ -66,7 +66,7 @@ class ReportService:
             transcribedVoiceText=report_data.transcribedVoiceText,
             status="Submitted",
             aiConfidence=None,
-            createdAt=utcnow(),
+            createdAt=report_data.createdAt if report_data.createdAt else utcnow(),
             updatedAt=utcnow()
         )
         

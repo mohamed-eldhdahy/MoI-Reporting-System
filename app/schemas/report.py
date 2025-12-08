@@ -44,6 +44,7 @@ class ReportCreate(ReportBase):
     transcribedVoiceText: Optional[str] = None
     isAnonymous: bool = Field(False, description="True if user wants to remain anonymous")
     hashedDeviceId: Optional[str] = Field(None, description="Required if isAnonymous=True for tracking")
+    createdAt: Optional[datetime] = None
     # Nested Attachments: Client sends list of file metadata with the report
     attachments: List[AttachmentCreate] = []
 

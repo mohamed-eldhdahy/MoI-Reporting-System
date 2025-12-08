@@ -60,6 +60,7 @@ async def create_report(
     isAnonymous: bool = Form(False),
     transcribedVoiceText: Optional[str] = Form(None),
     hashedDeviceId: Optional[str] = Form(None),
+    createdAt: Optional[datetime] = Form(None),
     files: Optional[List[UploadFile]] = File(...), 
     db: Session = Depends(get_db_ops),
     current_user: User = Depends(get_current_user)
@@ -85,6 +86,7 @@ async def create_report(
         isAnonymous=isAnonymous,
         transcribedVoiceText=transcribedVoiceText,
         hashedDeviceId=hashedDeviceId,
+        createdAt=createdAt,
         attachments=[]
     )
     
