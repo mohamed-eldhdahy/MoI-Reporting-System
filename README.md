@@ -1626,7 +1626,7 @@ jobs:
 | Ahmed Yasser Mohamed Ali | Backend Lead & Data Engineer|ETL, CI/CD, FastAPI, Database Design,API Development , Services Layer|
 | Salem Yasser Salem Ahmed | Data Engineer | ETL, Analytics DB |
 | Omar Akram Ahmed El-Sayed | Backend Developer | API Development |
-| Mohamed Sayed Mohamed Eldhdahy | Backend Developer | Services Layer  |
+| Mohamed Sayed Mohamed Eldhdahy | Cloud Data Engineer | Backend Architecture |
 | Moemen Abdelmonem Ibrahem Mohamed | QA Engineer | Testing, Documentation |
 
 ---
